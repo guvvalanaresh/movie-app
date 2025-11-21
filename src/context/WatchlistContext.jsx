@@ -8,6 +8,8 @@ export const WatchlistProvider = ({ children }) => {
   const [watchlist, setWatchlist] = useState([]);
   const isFirstLoad = useRef(true);
 
+// Fixed the localstorage watchlist issue
+
   // Load from localStorage ONLY once
   useEffect(() => {
     const stored = localStorage.getItem(STORAGE_KEY);
