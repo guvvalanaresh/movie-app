@@ -1,4 +1,4 @@
-import React, { createContext, useContext, useEffect, useState } from "react";
+import React, { createContext, useContext, useEffect, useState, useRef } from "react";
 
 const WatchlistContext = createContext(null);
 
@@ -6,7 +6,9 @@ const STORAGE_KEY = "movie_app_watchlist";
 
 export const WatchlistProvider = ({ children }) => {
   const [watchlist, setWatchlist] = useState([]);
+  const isFirstLoad = useRef(true);
 
+  // Load from localStorage ONLY once
   useEffect(() => {
     const stored = localStorage.getItem(STORAGE_KEY);
     if (stored) {
@@ -18,7 +20,12 @@ export const WatchlistProvider = ({ children }) => {
     }
   }, []);
 
+  // Save to localStorage only AFTER the initial load
   useEffect(() => {
+    if (isFirstLoad.current) {
+      isFirstLoad.current = false;
+      return;
+    }
     localStorage.setItem(STORAGE_KEY, JSON.stringify(watchlist));
   }, [watchlist]);
 

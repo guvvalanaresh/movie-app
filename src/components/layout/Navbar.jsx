@@ -38,14 +38,9 @@ const Navbar = () => {
           <NavLink to="/movies/now_playing" className={navLinkClass}>
             Now Playing
           </NavLink>
-          <NavLink to="/watchlist" className={navLinkClass}>
+          {/* <NavLink to="/watchlist" className={navLinkClass}>
             Watchlist
-            {watchlist.length > 0 && (
-              <span className="ml-1 rounded bg-sky-500/10 px-1.5 text-[10px] text-sky-400">
-                {watchlist.length}
-              </span>
-            )}
-          </NavLink>
+          </NavLink> */}
         </nav>
 
         <div className="flex flex-1 items-center justify-end gap-3">
@@ -57,6 +52,11 @@ const Navbar = () => {
             className="flex items-center gap-1 rounded-full border border-slate-700 px-3 py-1 text-xs text-slate-200 hover:border-sky-500 hover:text-sky-400"
           >
             ⭐ Watchlist
+            {watchlist.length > 0 && (
+              <span className="ml-1 rounded bg-red-500 px-1.5 text-[10px] text-white">
+                {watchlist.length}
+              </span>
+            )}
           </Link>
         </div>
       </div>
